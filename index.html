@@ -68,36 +68,38 @@
             });
       });
 
-   $( "#myTable").on('click','seleccionado', function(){
-    var currentRow = $(this).closest("tr");
-    console.log(currentRow);
-    var col3 = currentRow.find("td:eq(3)").html()
-    console.log(col3);
-    $.ajax({
+      $("#myTable").on('click', '.seleccionado', function () {
+            var currentRow = $(this).closest("tr");
+            console.log(currentRow);
+            var col3 = currentRow.find("td:eq(3)").html()
+            console.log(col3);
+            $.ajax({
+                // type: "POST",
+                dataType: 'json',
+                url: 'http://127.0.0.1:5984/practica/_design/vista001/_view/new-view?key="' + col3 + '"'
+            }).then(function (data) {
+                var cadena = '';
+                for (var i = 0; i < data.rows.length; i++) {
+                    console.log(data.rows[i]);
+                    var name = data.rows[i].value.Nombre_Institucion;
+                    var provincia = data.rows[i].value.Provincia;
+                    var canton = data.rows[i].value.Canton;
+                    var amie = data.rows[i].value.AMIE;
+                    console.log(name);
+                    cadena = cadena + "<p>" + name + "</p>";
+                    cadena = cadena + "<p>" + provincia + "</p>";
+                    cadena = cadena + "<p>" + canton + "</p>";
+                    cadena = cadena + "<p>" + amie + "</p>";
 
-      dataType: 'json', url:'http://127.0.0.1:5984/practica/_design/vista001/_view/new-view?key="'+col3+'"'
-    }).then(function(data){
-      var cadena = '';
-      for (var i = 0; i < data.rows.length; i++) {
-        console.log(data.rows[i]);
-          var name = data.rows[i].value.Nombre_Institucion;
-          var provincia = data.rows[i].value.Provincia;
-          var canton = data.rows[i].value.Canton;
-          var id = data.rows[i].value.AMIE;
-          console.log(name);
-          cadena = cadena + "<p>"+ name +"</p>";
-          cadena = cadena + "<p>"+ provincia +"</p>";
-          cadena = cadena + "<p>"+ canton +"</p>";
-          cadena = cadena + "<p>"+ amie+"</p>";
-                  
-      
-      }
+                }
+                v = currentRow.find("td:eq(4)");
+                v.html(cadena);
+
 
       v= currentRow.find("td:eq(4");
       v.html(cadena);
     });
-   
-
+  });
 
   </script>
 
