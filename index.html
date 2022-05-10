@@ -46,7 +46,7 @@
         $.ajax({
             // type: "POST",
             dataType: 'json',
-                url: 'http://127.0.0.1:5984/practica/_design/vista001/_view/new-view?key="'+nombre_canton+'"'
+                url: 'http://127.0.0.1:5984/base2/_design/vista001/_view/new-view?key="'+nombre_canton+'"'
             }).then(function(data) {
               var cadena = '';
               for(var i=0; i<data.rows.length; i++){
@@ -76,7 +76,7 @@
             $.ajax({
                 // type: "POST",
                 dataType: 'json',
-                url: 'http://127.0.0.1:5984/practica/_design/vista001/_view/new-view?key="' + col3 + '"'
+                url: 'http://127.0.0.1:5984/base2/_design/vista002/_view/new-view?key="' + col3 + '"'
             }).then(function (data) {
                 var cadena = '';
                 for (var i = 0; i < data.rows.length; i++) {
@@ -100,6 +100,7 @@
       v.html(cadena);
     });
   });
+      
 
   </script>
 
